@@ -1,5 +1,5 @@
 const fsPromises = require('fs/promises');
-const PATH = require('path');
+
 
 console.log(__dirname);
 
