@@ -8,7 +8,7 @@ const listOfFiles = async (path) => {
     if (file.isFile()) {
       const dir = PATH.resolve(path, file.name);
       const { size } = await fsPromises.stat(dir);
-      const fileInfo = file.name.split('.');
+      const fileInfo = [file.name.substring(0, file.name.lastIndexOf('.')), file.name.substring(file.name.lastIndexOf('.') + 1)];
       filesToShow.push([...fileInfo, size / 1024 + 'kb']);
     }
   }

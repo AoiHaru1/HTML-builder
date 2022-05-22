@@ -2,13 +2,14 @@ const fs = require('fs');
 const fsPromises = require('fs/promises');
 const PATH = require('path');
 
-const bundlePath = PATH.resolve(__dirname, 'bundle');
+const bundlePath = PATH.resolve(__dirname, 'project-dist');
 const stylesPath = PATH.resolve(__dirname, 'styles');
 
 fsPromises.mkdir(bundlePath, { recursive: true });
 
 
 // css bundle
+fs.writeFile(bundlePath + '/style.css', '', () => { });
 
 const cssBundle = async () => {
   const files = await fsPromises.readdir(stylesPath, { withFileTypes: true });
@@ -17,7 +18,7 @@ const cssBundle = async () => {
     if (ext[ext.length - 1] === 'css') {
       const stream = fs.ReadStream(stylesPath + `/${x.name}`);
       stream.on('data', (data) => {
-        fs.writeFile(bundlePath + '/style.css', `\n ${data}`, { flag: 'a+' }, () => { });
+        fs.writeFile(bundlePath + '/style.css', `\n\n${data}`, { flag: 'a+' }, () => { });
       });
     }
   });
@@ -42,7 +43,7 @@ const listOfFiles = async (path, outputPath) => {
   return;
 };
 
-listOfFiles(__dirname + '/assets', __dirname + '/bundle' + '/assets');
+listOfFiles(__dirname + '/assets', __dirname + '/project-dist' + '/assets');
 
 const stream = fs.ReadStream(PATH.resolve(__dirname, 'template.html'));
 

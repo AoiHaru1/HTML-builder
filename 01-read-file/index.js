@@ -1,7 +1,6 @@
 const fs = require('fs');
+const process = require('process');
 
-const stream = fs.ReadStream('./01-read-file/text.txt');
-
-stream.on('data', (data) => {
-  data ? console.log(data.toString()) : null;
+fs.ReadStream('./01-read-file/text.txt').on('data', (data) => {
+  data ?  process.stdout.write(data.toString()) : null;
 });

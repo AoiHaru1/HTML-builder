@@ -10,7 +10,7 @@ const bundleFunc = async () => {
     if (ext[ext.length - 1] === 'css') {
       const stream = fs.ReadStream(`./05-merge-styles/styles/${x.name}`);
       stream.on('data', (data) => {
-        fs.writeFile('./05-merge-styles/project-dist/bundle.css', `\n ${data}`, { flag: 'a+' }, () => { });
+        fs.writeFile('./05-merge-styles/project-dist/bundle.css', `\n\n${data}`, { flag: 'a+' }, () => { });
       });
     }
   });

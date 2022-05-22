@@ -1,13 +1,14 @@
 const process = require('process');
 const fs = require('fs');
+const textPath = __dirname + '/text.txt';
 
-fs.access('./02-write-file/text.txt', (err) => {
+fs.access(textPath, (err) => {
   if (err) {
-    fs.writeFile('./02-write-file/text.txt', '', () => { });
+    fs.writeFile(textPath, '', () => { });
   }
 });
 
-console.log('Здравствуйте. Введите ваше сообщение в консоль для последующей записи в файл.');
+console.log('Здравствуйте. Введите ваше сообщение для последующей записи в файл.');
 
 const goodByeFunc = () => console.log('До новой встречи.');
 
@@ -18,7 +19,7 @@ process.stdin.on('data', data => {
     goodByeFunc();
     return;
   }
-  fs.writeFile('./02-write-file/text.txt', string, { flag: 'a+'}, () => { });
+  fs.writeFile(textPath, string, { flag: 'a+'}, () => { });
 });
 
 process.on('SIGINT', () => {
