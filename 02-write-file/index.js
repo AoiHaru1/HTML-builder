@@ -14,7 +14,7 @@ const goodByeFunc = () => console.log('До новой встречи.');
 
 process.stdin.on('data', data => {
   const string = data.toString();
-  if (string === 'exit\r\n') {
+  if (string.trim() === 'exit') {
     process.stdin.destroy();
     goodByeFunc();
     return;
